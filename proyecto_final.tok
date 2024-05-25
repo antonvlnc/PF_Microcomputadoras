@@ -1,0 +1,273 @@
+ 36
+ 1
+ 3
+002  010  defvarbptr
+001  006  tpm1sc
+009  004  &h20
+ 37
+ 1
+ 3
+002  010  defvarbptr
+001  008  tpm1modh
+009  004  &h23
+ 38
+ 1
+ 3
+002  010  defvarbptr
+001  008  tpm1modl
+009  004  &h24
+ 39
+ 1
+ 3
+002  010  defvarbptr
+001  004  ptad
+009  003  &h0
+ 40
+ 1
+ 3
+002  010  defvarbptr
+001  005  ptape
+009  006  &h1840
+ 44
+ 1
+ 1
+002  006  iniens
+ 45
+ 1
+ 3
+000  007  tpm1sc@
+001  003  equ
+000  003  $20
+ 46
+ 1
+ 3
+000  005  ptad@
+001  003  equ
+000  003  $00
+ 48
+ 1
+ 2
+001  003  jsr
+000  007  lee#car
+ 49
+ 1
+ 1
+002  006  finens
+ 51
+ 1
+ 4
+002  005  input
+012  043  "Dar distancia entre sensores en metros-->"
+007  001  ,
+001  006  dentse
+ 54
+ 1
+ 3
+001  005  ptape
+006  001  =
+009  003  &h3
+ 55
+ 1
+ 3
+001  008  tpm1modh
+006  001  =
+009  004  &h4e
+ 56
+ 1
+ 3
+001  008  tpm1modl
+006  001  =
+009  004  &h1f
+ 58
+ 1
+ 3
+001  006  tpm1sc
+006  001  =
+009  003  &h8
+ 60
+ 1
+ 1
+002  006  iniens
+ 61
+ 1
+ 1
+001  003  cli
+ 62
+ 1
+ 1
+002  006  finens
+ 64
+ 1
+ 2
+002  005  while
+008  001  1
+ 66
+ 1
+ 3
+016  007  contms%
+006  001  =
+008  001  0
+ 68
+ 1
+ 2
+002  005  print
+012  026  "Espera paso por sensor 1"
+ 70
+ 1
+ 1
+002  006  iniens
+ 71
+ 1
+ 7
+017  009  espsens1:
+001  005  brset
+008  001  1
+007  001  ,
+000  005  ptad@
+007  001  ,
+001  008  espsens1
+ 72
+ 1
+ 4
+001  004  bset
+008  001  6
+007  001  ,
+000  007  tpm1sc@
+ 73
+ 1
+ 1
+002  006  finens
+ 75
+ 1
+ 2
+002  005  print
+012  027  "El movil pasó el sensor 1"
+ 77
+ 1
+ 1
+002  006  iniens
+ 78
+ 1
+ 7
+017  009  espsens2:
+001  005  brset
+008  001  0
+007  001  ,
+000  005  ptad@
+007  001  ,
+001  008  espsens2
+ 79
+ 1
+ 4
+001  004  bclr
+008  001  6
+007  001  ,
+000  007  tpm1sc@
+ 80
+ 1
+ 1
+002  006  finens
+ 82
+ 1
+ 2
+002  005  print
+012  027  "El movil pasó el sensor 2"
+ 84
+ 1
+ 7
+001  005  vprom
+006  001  =
+011  005  3600.
+003  001  *
+001  006  dentse
+003  001  /
+016  007  contms%
+ 87
+ 1
+ 1
+002  005  print
+ 89
+ 1
+ 6
+002  005  print
+012  038  "La velocidad promedio del movil fue "
+007  001  ;
+001  005  vprom
+007  001  ;
+012  008  " Km/hr"
+ 91
+ 1
+ 1
+002  005  print
+ 93
+ 1
+ 2
+002  005  print
+012  050  "oprimir cualquier tecla para hacer otra medición"
+ 96
+ 1
+ 1
+002  006  iniens
+ 97
+ 1
+ 2
+001  003  jsr
+000  007  lee#car
+ 98
+ 1
+ 1
+002  006  finens
+ 100
+ 1
+ 1
+002  003  cls
+ 102
+ 1
+ 1
+002  004  wend
+ 104
+ 1
+ 1
+017  008  servovf:
+ 105
+ 1
+ 1
+002  004  glip
+ 107
+ 1
+ 3
+021  006  byaux~
+006  001  =
+001  006  tpm1sc
+ 108
+ 1
+ 5
+001  006  tpm1sc
+006  001  =
+001  006  tpm1sc
+004  003  and
+009  004  &h7f
+ 110
+ 1
+ 5
+016  007  contms%
+006  001  =
+016  007  contms%
+003  001  +
+008  001  1
+ 113
+ 1
+ 1
+002  005  relip
+ 115
+ 1
+ 1
+002  006  retint
+ 117
+ 1
+ 3
+002  005  dataw
+009  006  &hd7e8
+001  007  servovf
+***** Fin de archivo de tokens  C:\Users\anton\OneDrive\Documentos\FI UNAM\8vo\Microcomputadoras\TEORIA\PROYECTO_FINAL\PF_Microcomputadoras\proyecto_final.tok  *****
+***** procesado el  24/05/2024 07:52:29 p. m.  *****

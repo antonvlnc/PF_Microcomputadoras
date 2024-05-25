@@ -1,0 +1,17 @@
++  ESTE ES EL ENCABEZADO DEL ARCHIVO DE AVISOS DEL COMPILADOR
+                              AVISO [1] DEL COMPILADOR          
+Los tipos asociados a la derecha e izquierda del signo '=' en el renglón  66
+son diferentes,el compilador homologará al tipo asociado con la variable 
+a la izquierda del signo '='. 
+contms% = 0 
+-------------------------------------------------------------------------
+                              AVISO [2] DEL COMPILADOR          
+Se encontraron variables y/o constantes numéricas de diferente tipo en el renglón  84
+El compilador homologará estos al tipo más alto. 
+vprom = 3600. * dentse / contms% 
+-------------------------------------------------------------------------
+                              AVISO [3] DEL COMPILADOR          
+Se encontraron variables y/o constantes numéricas de diferente tipo en el renglón  110
+El compilador homologará estos al tipo más alto. 
+contms% = contms% + 1 
+-------------------------------------------------------------------------

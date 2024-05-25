@@ -1,0 +1,211 @@
++  ESTE ES EL ENCABEZADO DEL ARCHIVO DEL CÓDIGO INTERMEDIO
+*  defvarbptr tpm1sc &h20 
+*  defvarbptr tpm1modh &h23 
+*  defvarbptr tpm1modl &h24 
+*  defvarbptr ptad &h0 
+*  defvarbptr ptape &h1840 
+ fin#sent defvarbptr tpm1sc &h20   36 1
+ fin#sent defvarbptr tpm1modh &h23   37 2
+ fin#sent defvarbptr tpm1modl &h24   38 3
+ fin#sent defvarbptr ptad &h0   39 4
+ fin#sent defvarbptr ptape &h1840   40 5
+*
+*    <<< iniens  (ren= 44) >>>
+*
+        iniens 
+           tpm1sc@ equ $20 
+           ptad@ equ $00 
+           jsr lee#car 
+*
+*    <<< finens  (ren= 49) >>>
+*
+        finens 
+ fin#sent finens   49 10
+*
+*    <<< input "Dar distancia entre sensores en metros-->" , dentse  (ren= 51) >>>
+*
+                        print1#de0 "Dar distancia entre sensores en metros-->"
+                        input#4 dentse 
+                        print#crlf
+ fin#sent input "Dar distancia entre sensores en metros-->" , dentse   51 11
+*
+*    <<< ptape = &h3  (ren= 54) >>>
+*
+                        ptape  = &h3
+ fin#sent ptape = &h3   54 12
+*
+*    <<< tpm1modh = &h4e  (ren= 55) >>>
+*
+                        tpm1modh  = &h4e
+ fin#sent tpm1modh = &h4e   55 13
+*
+*    <<< tpm1modl = &h1f  (ren= 56) >>>
+*
+                        tpm1modl  = &h1f
+ fin#sent tpm1modl = &h1f   56 14
+*
+*    <<< tpm1sc = &h8  (ren= 58) >>>
+*
+                        tpm1sc  = &h8
+ fin#sent tpm1sc = &h8   58 15
+*
+*    <<< iniens  (ren= 60) >>>
+*
+        iniens 
+           cli 
+*
+*    <<< finens  (ren= 62) >>>
+*
+        finens 
+ fin#sent finens   62 18
+*
+*    <<< while 1  (ren= 64) >>>
+*
+iniwhile#001:
+                        t~1 = val#boole 1
+                        while#001 t~1 wend#001
+ fin#sent while 1   64 19
+*
+*    <<< contms% = 0  (ren= 66) >>>
+*
+                        t%1 = conv#12  0
+                        contms%  = t%1
+ fin#sent contms% = 0   66 20
+*
+*    <<< print "Espera paso por sensor 1"  (ren= 68) >>>
+*
+                        print1#de0 "Espera paso por sensor 1"
+                        print#crlf
+ fin#sent print "Espera paso por sensor 1"   68 21
+*
+*    <<< iniens  (ren= 70) >>>
+*
+        iniens 
+espsens1:       brset 1 , ptad@ , espsens1 
+           bset 6 , tpm1sc@ 
+*
+*    <<< finens  (ren= 73) >>>
+*
+        finens 
+ fin#sent finens   73 25
+*
+*    <<< print "El movil pasó el sensor 1"  (ren= 75) >>>
+*
+                        print1#de0 "El movil pasó el sensor 1"
+                        print#crlf
+ fin#sent print "El movil pasó el sensor 1"   75 26
+*
+*    <<< iniens  (ren= 77) >>>
+*
+        iniens 
+espsens2:       brset 0 , ptad@ , espsens2 
+           bclr 6 , tpm1sc@ 
+*
+*    <<< finens  (ren= 80) >>>
+*
+        finens 
+ fin#sent finens   80 30
+*
+*    <<< print "El movil pasó el sensor 2"  (ren= 82) >>>
+*
+                        print1#de0 "El movil pasó el sensor 2"
+                        print#crlf
+ fin#sent print "El movil pasó el sensor 2"   82 31
+*
+*    <<< vprom = 3600. * dentse / contms%  (ren= 84) >>>
+*
+                        t!1 = 3600. * dentse
+                        t!2 = conv#24  contms%
+                        t!3 = t!1 / t!2
+                        vprom  = t!3
+ fin#sent vprom = 3600. * dentse / contms%   84 32
+*
+*    <<< print  (ren= 87) >>>
+*
+                        print#crlf
+ fin#sent print   87 33
+*
+*    <<< print "La velocidad promedio del movil fue " ; vprom ; " Km/hr"  (ren= 89) >>>
+*
+                        print1#de0 "La velocidad promedio del movil fue "
+                        print1#4 vprom
+                        print1#de0 " Km/hr"
+                        print#crlf
+ fin#sent print "La velocidad promedio del movil fue " ; vprom ; " Km/hr"   89 34
+*
+*    <<< print  (ren= 91) >>>
+*
+                        print#crlf
+ fin#sent print   91 35
+*
+*    <<< print "oprimir cualquier tecla para hacer otra medición"  (ren= 93) >>>
+*
+                        print1#de0 "oprimir cualquier tecla para hacer otra medición"
+                        print#crlf
+ fin#sent print "oprimir cualquier tecla para hacer otra medición"   93 36
+*
+*    <<< iniens  (ren= 96) >>>
+*
+        iniens 
+           jsr lee#car 
+*
+*    <<< finens  (ren= 98) >>>
+*
+        finens 
+ fin#sent finens   98 39
+*
+*    <<< cls  (ren= 100) >>>
+*
+                    cls
+ fin#sent cls   100 40
+*
+*    <<< wend  (ren= 102) >>>
+*
+                        goto iniwhile#001
+wend#001:
+ fin#sent wend   102 41
+*
+*<<< servovf:  (ren= 104) >>>
+*
+servovf:
+ fin#sent servovf:   104 42
+*
+*    <<< glip  (ren= 105) >>>
+*
+                    glip
+ fin#sent glip   105 43
+*
+*    <<< byaux~ = tpm1sc  (ren= 107) >>>
+*
+                        byaux~  = tpm1sc
+ fin#sent byaux~ = tpm1sc   107 44
+*
+*    <<< tpm1sc = tpm1sc and &h7f  (ren= 108) >>>
+*
+                        t~1 = tpm1sc and &h7f
+                        tpm1sc  = t~1
+ fin#sent tpm1sc = tpm1sc and &h7f   108 45
+*
+*    <<< contms% = contms% + 1  (ren= 110) >>>
+*
+                        t%1 = conv#12  1
+                        t%2 = contms% + t%1
+                        contms%  = t%2
+ fin#sent contms% = contms% + 1   110 46
+*
+*    <<< relip  (ren= 113) >>>
+*
+                    relip
+ fin#sent relip   113 47
+*
+*    <<< retint  (ren= 115) >>>
+*
+                        retint 
+ fin#sent retint   115 48
+ fin#sent dataw &hd7e8 servovf   117 49
+** Sentencias data **
+** Sentencias datax, x=b/w/l/s/d **
+*
+*    <<< dataw &hd7e8 servovf  (ren= 117) >>>
+*
+                        data#w &hd7e8 servovf 

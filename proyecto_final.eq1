@@ -1,0 +1,11 @@
+** Asignaciones equ asociadas con sentencias defvarxptr **
+*  defvarbptr tpm1sc &h20 
+tpm1sc               equ $0020
+*  defvarbptr tpm1modh &h23 
+tpm1modh             equ $0023
+*  defvarbptr tpm1modl &h24 
+tpm1modl             equ $0024
+*  defvarbptr ptad &h0 
+ptad                 equ $0000
+*  defvarbptr ptape &h1840 
+ptape                equ $1840
