@@ -1,0 +1,62 @@
+' Programa para obtener las raíces de una ecuación cuadrática
+' Usando MINIBAS8A en un MCU MC9S08SH32 como dispositivo CHIPBAS8SH
+' Basado en el código de medición de velocidad de un móvil
+
+' Definición de variables y punteros
+DIM a AS FLOAT
+DIM b AS FLOAT
+DIM c AS FLOAT
+DIM discriminante AS FLOAT
+DIM x1 AS FLOAT
+DIM x2 AS FLOAT
+
+defvarbptr ptad &h0
+defvarbptr ptape &h1840
+
+' Inicialización del ensamblador
+iniens
+ptad@ equ $00
+finens
+
+DO
+    ' Esperar a que el usuario presione una tecla
+    print "Presiona cualquier tecla para iniciar..."
+    iniens
+    jsr lee#car
+    finens
+
+    ' Solicitar coeficientes al usuario
+    print "Introduce el coeficiente a: "
+    input a
+
+    print "Introduce el coeficiente b: "
+    input b
+
+    print "Introduce el coeficiente c: "
+    input c
+
+    ' Calcular discriminante
+    discriminante = b * b - 4 * a * c
+
+    ' Verificar si el discriminante es negativo
+    IF discriminante < 0 THEN
+        print "La ecuación no tiene raíces reales."
+    ELSE
+        ' Calcular raíces
+        x1 = (-b + SQRT(discriminante)) / (2 * a)
+        x2 = (-b - SQRT(discriminante)) / (2 * a)
+        print "Las raíces de la ecuación son: "
+        print "x1 = "; x1
+        print "x2 = "; x2
+    END IF
+
+    ' Esperar a que el usuario presione una tecla para repetir el proceso
+    print "Presiona cualquier tecla para resolver otro caso..."
+    iniens
+    jsr lee#car
+    finens
+
+    ' Limpiar la pantalla para la próxima iteración
+    cls
+
+LOOP

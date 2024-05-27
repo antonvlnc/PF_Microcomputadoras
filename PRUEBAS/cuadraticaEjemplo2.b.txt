@@ -1,0 +1,66 @@
+' Programa para calcular las raíces de una ecuación cuadrática en MINIBAS8A.
+' Escrito por: [Tu Nombre]
+' Fecha: [Fecha]
+
+defvarbptr ptad &h0
+defvarbptr ptape &h1840
+
+' Función para calcular la raíz cuadrada
+def double sqrt(double x)
+    asm
+        pshhx
+        pshx
+        jsr _sqrt
+        pulx
+        pulhx
+    end asm
+end def
+
+defvarb a, b, c
+defvarb discriminant, root1, root2, realPart, imaginaryPart
+
+sub main()
+    ' Configuración inicial
+    cls
+    ptape = &h3 ' Pullups en bits 1 y 0 del puerto A
+
+    while 1
+        print "Oprima cualquier tecla para iniciar..."
+        iniens
+        jsr lee#car
+        finens
+
+        input "Ingrese el coeficiente a: ", a
+        input "Ingrese el coeficiente b: ", b
+        input "Ingrese el coeficiente c: ", c
+
+        discriminant = b * b - 4 * a * c
+
+        if discriminant > 0 then
+            root1 = (-b + sqrt(discriminant)) / (2 * a)
+            root2 = (-b - sqrt(discriminant)) / (2 * a)
+            print "Las raíces son reales y diferentes."
+            print "Raíz 1: "; root1
+            print "Raíz 2: "; root2
+        elseif discriminant = 0 then
+            root1 = -b / (2 * a)
+            print "Las raíces son reales e iguales."
+            print "Raíz: "; root1
+        else
+            realPart = -b / (2 * a)
+            imaginaryPart = sqrt(-discriminant) / (2 * a)
+            print "Las raíces son complejas y diferentes."
+            print "Raíz 1: "; realPart; " + "; imaginaryPart; "i"
+            print "Raíz 2: "; realPart; " - "; imaginaryPart; "i"
+        end if
+
+        print "Oprima cualquier tecla para calcular otra ecuación..."
+        iniens
+        jsr lee#car
+        finens
+
+        cls
+    wend
+end sub
+
+main()
