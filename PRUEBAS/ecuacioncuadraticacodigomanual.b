@@ -6,7 +6,7 @@ finens
 otrom:           
  
   PRINT "SOLUCIÓN DE ECUACIONES CUADRATICAS"     
-  PRINT "      a*x^2 + b*x +c = 0           
+  PRINT "      a*x^2 + b*x +c = 0"           
   PRINT "Introducir coeficientes:"         
       
 dara:    INPUT "a=", a               
